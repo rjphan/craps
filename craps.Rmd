@@ -78,7 +78,8 @@ x <- tibble(p_IB = map_int(1:n, ~ roll_two_dice()),
       mutate(winner = ifelse(JM_craps & !IB_craps, "JM", winner)) %>% 
       mutate(contest = rep(1:number_of_contests, each = contest_size)) %>% 
       group(contest) %>% 
-      summarize(JM_wins = sum(winner == "JM"))
+      summarize(JM_wins = sum(winner == "JM")) %>% 
+      sum(JM_wins >= 4)/1000
 x
 ```
 
